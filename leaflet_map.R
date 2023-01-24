@@ -13,7 +13,9 @@ state_centers <- sf::st_centroid(usa.sf) |>
   mutate(long = unlist(map(state_centers$geometry,1)),
          lat = unlist(map(state_centers$geometry,2)))
 
-m <- leaflet() |> 
+m <- leaflet(options = leafletOptions(doubleClickZoom=FALSE,
+                                      minZoom = 4,
+                                      maxZoom = 4)) |> 
   addPolygons(data=usa.sf,
               weight=0.5,
               opacity=1,
